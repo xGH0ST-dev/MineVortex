@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MineVortex is a cross-play Minecraft server connecting players on Java and Bedrock editions with custom plugins and community events.">
+    <title>MineVortex - Cross-Play Minecraft Server</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom styles to integrate with Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e7eb;
+            overflow-x: hidden;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-premium {
+            background: linear-gradient(90deg, #8A2BE2, #4A00E0);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(138, 43, 226, 0.8);
+        }
+        
+        /* Utility for SVG icons */
+        .icon {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            stroke-width: 2;
+            stroke: currentColor;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 3D Background Canvas -->
+    <canvas id="bg-canvas" aria-label="Animated 3D background"></canvas>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full p-4 z-50 transition-all duration-300">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-2xl font-bold text-white tracking-wider">Mine<span style="color: #8A2BE2;">Vortex</span></h1>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#features" class="text-gray-300 hover:text-white transition-colors">Features</a>
+                <a href="#join" class="text-gray-300 hover:text-white transition-colors">How to Join</a>
+                <!-- Replace "#" with your Discord invite link -->
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">Join Discord</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center text-center relative px-4">
+            <div class="hero-content space-y-6">
+                <h2 class="text-5xl md:text-7xl font-black text-white leading-tight">
+                    Enter the <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-400">Vortex</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+                    The ultimate cross-play Minecraft experience. Join thousands of players on Java & Bedrock and explore a universe of endless possibilities.
+                </p>
+                <div class="pt-4">
+                    <a href="https://discord.gg/fnXxanh8PK" class="btn-premium text-white font-bold py-3 px-8 rounded-full text-lg">
+                        Join Now
+                    </a>
+                </div>
+                <!-- Copyable IP Container -->
+                <div class="mt-6 flex justify-center items-center">
+                    <div class="glass-card flex items-center justify-between p-2 rounded-lg text-sm max-w-xs mx-auto">
+                        <span id="server-ip" class="font-mono text-gray-300 px-2">minevortex.mine.bz</span>
+                        <button id="copy-btn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-1 px-3 rounded-md transition-colors" aria-label="Copy server IP">
+                            Copy
+                        </button>
+                    </div>
+                    <span id="copy-message" class="ml-3 text-green-400 opacity-0 transition-opacity duration-300">Copied!</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-20 bg-black bg-opacity-30">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h3 class="text-4xl font-bold text-white">Server Features</h3>
+                    <p class="text-gray-400 mt-2">What makes MineVortex unique.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature Card 1: Cross-Play -->
+                    <div class="glass-card p-8 rounded-2xl text-center transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-5xl mb-4 text-purple-400">
+                            <svg class="h-16 w-16 mx-auto icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-2">Full Cross-Play</h4>
+                        <p class="text-gray-300">Play with your friends whether they are on PC, Console, or Mobile. Our server seamlessly connects Java and Bedrock players.</p>
+                    </div>
+                    <!-- Feature Card 2: Custom Plugins -->
+                    <div class="glass-card p-8 rounded-2xl text-center transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-5xl mb-4 text-cyan-400">
+                            <svg class="h-16 w-16 mx-auto icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-12v4m-2-2h4m6 1v4m-2-2h4M17 3l4 4M5 17l4 4M17 17l4-4M5 7l4-4" />
+                            </svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-2">Custom Plugins</h4>
+                        <p class="text-gray-300">Experience unique gameplay with our custom-coded plugins, including new items, quests, and challenging boss fights.</p>
+                    </div>
+                    <!-- Feature Card 3: Community Events -->
+                    <div class="glass-card p-8 rounded-2xl text-center transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-5xl mb-4 text-purple-400">
+                            <svg class="h-16 w-16 mx-auto icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.28-1.25-1.45-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.653.28-1.25 1.45-1.857M12 4v12m0 0l-4-4m4 4l4-4" />
+                            </svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-2">Community Events</h4>
+                        <p class="text-gray-300">Participate in weekly events, build competitions, and PvP tournaments. Join our active and friendly community today!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join Section -->
+        <section id="join" class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h3 class="text-4xl font-bold text-white">How to Join</h3>
+                    <p class="text-gray-400 mt-2">Connecting to MineVortex is easy.</p>
+                </div>
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-card p-8 rounded-2xl">
+                        <h4 class="text-2xl font-bold text-white mb-4">Java Edition</h4>
+                        <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                            <li>Launch Minecraft: Java Edition.</li>
+                            <li>Click on "Multiplayer", then "Add Server".</li>
+                            <li>Enter <span class="font-mono bg-gray-900 px-2 py-1 rounded">MineVortex</span> as the server name.</li>
+                            <li>Enter <span class="font-mono bg-gray-900 px-2 py-1 rounded">minevortex.mine.bz</span> as the server address.</li>
+                            <li>Click "Done" and join the server!</li>
+                        </ol>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl">
+                        <h4 class="text-2xl font-bold text-white mb-4">Bedrock Edition</h4>
+                        <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                            <li>Launch Minecraft (Windows 10, Mobile, Console).</li>
+                            <li>Click "Play", then navigate to the "Servers" tab.</li>
+                            <li>Scroll down and click "Add Server".</li>
+                            <li>Enter <span class="font-mono bg-gray-900 px-2 py-1 rounded">MineVortex</span> as the server name.</li>
+                            <li>Address: <span class="font-mono bg-gray-900 px-2 py-1 rounded">minevortex.mine.bz</span></li>
+                            <li>Port: <span class="font-mono bg-gray-900 px-2 py-1 rounded">19132</span> (default)</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-900 bg-opacity-50">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; 2024 MineVortex. All Rights Reserved.</p>
+            <p class="text-sm mt-2">We are not affiliated with Mojang AB.</p>
+        </div>
+    </footer>
+
+    <!-- Three.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script type="module">
+        // Import Three.js is not needed here as it's loaded from a regular script tag.
+        
+        // Scene setup
+        const canvas = document.querySelector('#bg-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({
+            canvas: canvas,
+            alpha: true,
+            antialias: true // Add antialiasing for smoother edges
+        });
+
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.position.setZ(30);
+
+        // Lights
+        const pointLight = new THREE.PointLight(0x8A2BE2, 2);
+        pointLight.position.set(5, 5, 5);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+        scene.add(pointLight, ambientLight);
+
+        // Central Vortex Object
+        const geometry = new THREE.IcosahedronGeometry(10, 1);
+        const material = new THREE.MeshStandardMaterial({
+            color: 0x4A00E0,
+            wireframe: true,
+            emissive: 0x8A2BE2,
+            emissiveIntensity: 0.3
+        });
+        const vortex = new THREE.Mesh(geometry, material);
+        scene.add(vortex);
+
+        // Particle System
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 5000;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 100;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.05,
+            color: 0x00ffff
+        });
+        const particleMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particleMesh);
+
+        // Mouse movement interaction
+        let mouseX = 0;
+        let mouseY = 0;
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Animation Loop
+        const clock = new THREE.Clock();
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            const elapsedTime = clock.getElapsedTime();
+
+            // Animate vortex
+            vortex.rotation.x = 0.2 * elapsedTime;
+            vortex.rotation.y = 0.2 * elapsedTime;
+
+            // Animate particles
+            particleMesh.rotation.y = -0.05 * elapsedTime;
+            
+            // Animate camera based on mouse
+            camera.position.x += (mouseX * 5 - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 5 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+        };
+
+        // Ensure the animation starts after the window has loaded
+        window.onload = function () {
+            animate();
+        };
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Header scroll effect
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-gray-900', 'bg-opacity-70', 'backdrop-blur-sm');
+            } else {
+                header.classList.remove('bg-gray-900', 'bg-opacity-70', 'backdrop-blur-sm');
+            }
+        });
+
+        // Copy IP functionality with improved user feedback
+        const copyBtn = document.getElementById('copy-btn');
+        const serverIp = document.getElementById('server-ip');
+        const originalBtnText = copyBtn.innerText;
+
+        copyBtn.addEventListener('click', () => {
+            const ipText = serverIp.innerText;
+            
+            const textArea = document.createElement('textarea');
+            textArea.value = ipText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                // Provide visual feedback by changing button text
+                copyBtn.innerText = "Copied!";
+                copyBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+                copyBtn.classList.remove('bg-purple-600', 'hover:bg-purple-700');
+                
+                // Revert button text and color after a delay
+                setTimeout(() => {
+                    copyBtn.innerText = originalBtnText;
+                    copyBtn.classList.add('bg-purple-600', 'hover:bg-purple-700');
+                    copyBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
+
+            document.body.removeChild(textArea);
+        });
+    </script>
+</body>
+</html>
