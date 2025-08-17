@@ -166,7 +166,7 @@
              <a href="#status" class="text-gray-300 hover:text-white transition-colors text-3xl font-bold">Status</a>
              <a href="#devs" class="text-gray-300 hover:text-white transition-colors text-3xl font-bold">Developers</a>
              <a href="#join" class="text-gray-300 hover:text-white transition-colors text-3xl font-bold">How to Join</a>
-             <a href="https://discord.gg/jTHf8p3GvS" class="btn-cta text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 text-2xl mt-4">Discord</a>
+             <a href="https://discord.com/invite/jTHf8p3GvS" class="btn-cta text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 text-2xl mt-4">Discord</a>
         </nav>
     </div>
 
@@ -517,7 +517,10 @@
             }
         };
 
+        // Fetch stats on page load
         fetchServerStats();
+        // Then fetch stats every 10 seconds
+        setInterval(fetchServerStats, 10000);
 
     </script>
 </body>
