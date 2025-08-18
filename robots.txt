@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://minevortex.pages.dev/sitemap.xml
